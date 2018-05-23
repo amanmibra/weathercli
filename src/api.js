@@ -17,8 +17,19 @@ function currently (zip) {
   });
 }
 
-function forecast (zip) {
-
+function forecast (zip, days) {
+  const url = `http://api.apixu.com/v1/forecast.json?key=${key}&q=${zip}&days=${days}`
+  axios.get(url)
+  .then((res) => {
+    const forecasts = res.data.forecast.forecastday;
+    forecasts.forEach((forecast) => {
+      const mess = `${forecast.date}: ${forecast.day.avgtemp_f}°F`;
+      console.log(mess);
+    })
+  })
+  .catch((err) => {
+    console.log('ERROR: ', err);
+  });
 }
 
 function zipcode (zip) {

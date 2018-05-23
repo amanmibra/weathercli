@@ -22,7 +22,6 @@ CurrentlyCommand.flags = {
 
 CurrentlyCommand.args = [
     {name: 'arg1'},
-    {name: 'arg2'},
   ]
 
 module.exports = CurrentlyCommand
