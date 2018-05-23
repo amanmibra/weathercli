@@ -9,23 +9,21 @@ class ForecastCommand extends Command {
     const days = argv[1];
 
     if (!days) days = 5;
-    forecast(zip, days)
+    if (days < 1 || days > 7) {
+      console.log('ERROR: days must be between 1 and 7');
+    } else {
+      forecast(zip, days)
+    }
   }
 }
 
 ForecastCommand.description = `
-Describe the command here
-...
-Extra documentation goes here
-`
-
-ForecastCommand.flags = {
-  name: flags.string({char: 'n', description: 'name to print'}),
-}
+Displays forecast for set zipcode over a number of days between 1-7.
+`;
 
 ForecastCommand.args = [
-    {name: 'arg1'},
-    {name: 'arg2'},
+    {name: 'zipcode'},
+    {name: 'days'},
   ]
 
 module.exports = ForecastCommand

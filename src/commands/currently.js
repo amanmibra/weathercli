@@ -11,17 +11,11 @@ class CurrentlyCommand extends Command {
 }
 
 CurrentlyCommand.description = `
-Describe the command here
-...
-Extra documentation goes here
+Displays current weather for set zipcode.
 `
 
-CurrentlyCommand.flags = {
-  name: flags.string({char: 'n', description: 'name to print'})
-}
-
 CurrentlyCommand.args = [
-    {name: 'arg1'},
+    {name: 'zipcode'},
   ]
 
 module.exports = CurrentlyCommand
