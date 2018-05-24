@@ -11,7 +11,7 @@ class CurrentlyCommand extends Command {
     this.log('Checking for saved zipcode...');
     exec(`cat ~/.weather-cli`, (error, stdout, stderr) => {
       if (error) {
-        this.error(`Unable to grab Zipcode from ~./.weather-cli: ${error}`);
+        this.log(`Unable to grab Zipcode from ~./.weather-cli: ${error}`);
         this.log('Collecting weather data...')
         currently(argv[0])
         return;
@@ -25,9 +25,7 @@ class CurrentlyCommand extends Command {
   }
 }
 
-CurrentlyCommand.description = `
-Displays current weather for set zipcode.
-`
+CurrentlyCommand.description = `Displays current weather for set zipcode.`
 
 CurrentlyCommand.args = [
     {name: 'zipcode'},

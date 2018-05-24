@@ -18,7 +18,7 @@ class ForecastCommand extends Command {
       this.log('Checking for saved zipcode...');
       exec(`cat ~/.weather-cli`, (error, stdout, stderr) => {
         if (error) {
-          this.error(`Unable to grab Zipcode from ~./.weather-cli: ${error}`);
+          this.log(`Unable to grab Zipcode from ~./.weather-cli: ${error}`);
           this.log('Collecting weather data...')
           forecast(zip, days)
           return;
@@ -31,9 +31,7 @@ class ForecastCommand extends Command {
   }
 }
 
-ForecastCommand.description = `
-Displays forecast for set zipcode over a number of days between 1-7.
-`;
+ForecastCommand.description = `Displays forecast for set zipcode over a number of days between 1-7.`;
 
 ForecastCommand.args = [
     {name: 'zipcode'},
