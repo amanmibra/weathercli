@@ -46,7 +46,8 @@ function forecast (zip, days) {
     console.log('----------');
   })
   .catch((err) => {
-    console.log('ERROR: ', err);
+    // console.log('ERROR: ', err);
+    console.log('Error with the following url: ', url);
   });
 }
 
