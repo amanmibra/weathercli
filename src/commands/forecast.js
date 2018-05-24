@@ -1,5 +1,7 @@
 const {Command, flags} = require('@oclif/command')
 const { forecast } = require('../api')
+const { exec } = require('child_process')
+
 
 class ForecastCommand extends Command {
   async run() {
@@ -12,7 +14,19 @@ class ForecastCommand extends Command {
     if (days < 1 || days > 7) {
       console.log('ERROR: days must be between 1 and 7');
     } else {
-      forecast(zip, days)
+      // Checking for zipcode and executing API call
+      this.log('Checking for saved zipcode...');
+      exec(`cat ~/.weather-cli`, (error, stdout, stderr) => {
+        if (error) {
+          this.error(`Unable to grab Zipcode from ~./.weather-cli: ${error}`);
+          this.log('Collecting weather data...')
+          forecast(zip, days)
+          return;
+        }
+        this.log('Found zipcode in ~./weather-cli!');
+        this.log('Collecting weather data...')
+        forecast(stdout, days)
+      });
     }
   }
 }

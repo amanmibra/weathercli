@@ -8,10 +8,10 @@ class ZipcodeCommand extends Command {
 
     exec(`echo ${zip} > ~/.weather-cli`, (error, stdout, stderr) => {
       if (error) {
-        console.error(`exec error: ${error}`);
+        this.error(`exec error: ${error}`);
         return;
       }
-      console.log('Zipcode successfully written to ~/.weather-cli...');
+      this.log('Zipcode successfully written to ~/.weather-cli...');
     });
   }
 }
